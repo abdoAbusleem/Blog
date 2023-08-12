@@ -35,10 +35,7 @@ Relationship.init({
 })
 
 
- User.hasMany(Relationship, {
-      foreignKey: "followerUserId" ,
-      foreignKey : 'followedUserId'
-  }, { onDelete: 'cascade', hooks: true });
+ User.hasMany(Relationship,{ onDelete: 'cascade'  ,hooks: true });
 
 
 

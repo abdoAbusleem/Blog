@@ -5,6 +5,7 @@ const sequelize = require("./DBConfig/DBconnection")
 const userRoute = require ("./routes/user")
 const postRoute = require ("./routes/post")
 const relationRoute = require("./routes/relationship")
+const commentRoute = require("./routes/Comment")
 const {auth}    = require("./middlewares/auth") 
 
 const app = express()
@@ -36,6 +37,7 @@ app.use(morgan("tiny"))
  app.use("/api/Users" , userRoute)
  app.use ("/api/posts" , auth , postRoute)
  app.use("/api/relation" , auth , relationRoute)
+ app.use("/api/comments" , auth , commentRoute)
 
 
 //port

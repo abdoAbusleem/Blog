@@ -4,6 +4,7 @@ const _ = require("lodash")
 const bcrypt = require("bcrypt")
 const { where } = require("sequelize")
 const Post = require("../models/post")
+const  RelationShip = require("../models/relationship")
 const { Op } = require("sequelize")
 
 
@@ -78,7 +79,7 @@ module.exports.login = async (req, res) => {
 // get single user
 module.exports.findUser = async (req, res) => {
     try {
-        let findUser = await User.findOne({ where: { id: req.params.id }, attributes: ["name", "image"], include: { model: Post, attributes: ["title", "text", "image", "createdAt"] } })
+        let findUser = await User.findOne({ where: { id: req.params.id }, attributes: ["name", "image"], include: [{ model: Post, attributes: ["title", "text", "image", "createdAt"]} , {model : RelationShip}] })
 
         if (!findUser) {
             return res.status(400).send("user not found")

@@ -30,7 +30,6 @@ module.exports.validateRegister = async (data)=>{
 
 
 
-
 module.exports.validateLogin = async (Request)=>{
     let schema = joi.object({
         email : joi.string().email({ maxDomainSegments: 2, tlds: { allow: ["com", "net"] } }).required(),
@@ -40,3 +39,4 @@ module.exports.validateLogin = async (Request)=>{
     return error
 }
 
+ 
