@@ -36,15 +36,14 @@ app.use(morgan("tiny"))
 
 
  //routes 
- app.use("/.netlify/functions/" , userRoute)
- app.use ("/.netlify/functions/" , auth , postRoute)
- app.use("/.netlify/functions/" , auth , relationRoute)
- app.use("/.netlify/functions/" , auth , commentRoute)
+ app.use("/api/Users" , userRoute)
+ app.use ("/api/posts" , auth , postRoute)
+ app.use("/api/relation" , auth , relationRoute)
+ app.use("/api/comments" , auth , commentRoute)
 
 
 //port
 
 const Port = process.env.Port || 4500
 app.listen(Port, () => console.log(`server is running on port ${Port}`))
-
 module.exports = serverless(app);
