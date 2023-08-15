@@ -7,6 +7,8 @@ const postRoute = require ("./routes/post")
 const relationRoute = require("./routes/relationship")
 const commentRoute = require("./routes/Comment")
 const {auth}    = require("./middlewares/auth") 
+const serverless = require('serverless-http') ;
+
 
 const app = express()
 require("dotenv").config()
@@ -44,3 +46,5 @@ app.use(morgan("tiny"))
 
 const Port = process.env.Port || 4500
 app.listen(Port, () => console.log(`server is running on port ${Port}`))
+
+export const handler = serverless(app);
