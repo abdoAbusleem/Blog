@@ -42,6 +42,12 @@ app.use(morgan("tiny"))
  app.use("/.netlify/functions/api/comments" , auth , commentRoute)
 
 
+ app.get("/.netlify/functions/api/", (req, res) => {
+    res.json({
+      hello: "hi!"
+    });
+  });
+
 //port
 
 const Port = process.env.Port || 4500
