@@ -8,7 +8,7 @@ const relationRoute = require("./routes/relationship")
 const commentRoute = require("./routes/Comment")
 const {auth}    = require("./middlewares/auth") 
 const serverless = require('serverless-http') ;
-
+const router = require('express').Router()
 
 const app = express()
 require("dotenv").config()
@@ -36,11 +36,19 @@ app.use(morgan("tiny"))
 
 
  //routes 
- app.use("/.netlify/functions/api/Users" , userRoute)
- app.use ("/.netlify/functions/api/posts" , auth , postRoute)
- app.use("/.netlify/functions/api/relation" , auth , relationRoute)
- app.use("/.netlify/functions/api/comments" , auth , commentRoute)
+ router.use("/Users" , userRoute)
+ router.use ("/posts" , auth , postRoute)
+ router.use("/relation" , auth , relationRoute)
+ router.use("/comments" , auth , commentRoute)
 
+
+ app.get("/", (req, res) => {
+    res.json({
+      hello: "hi!"
+    });
+  });
+
+  app.use(`/.netlify/functions/api`, router);
 //port
 
 const Port = process.env.Port || 4500
