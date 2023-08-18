@@ -35,13 +35,21 @@ app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
 
  //routes 
- app.use("/api/Users" , userRoute)
- app.use ("/api/posts" , auth , postRoute)
- app.use("/api/relation" , auth , relationRoute)
- app.use("/api/comments" , auth , commentRoute)
+ router.use("/Users" , userRoute)
+ router.use ("/posts" , auth , postRoute)
+ router.use("/relation" , auth , relationRoute)
+ router.use("/comments" , auth , commentRoute)
 
 
+ app.get("/", (req, res) => {
+    res.json({
+      hello: "hi!"
+    });
+  });
+
+  app.use(`/.netlify/functions/api`, router);
 //port
 
 const Port = process.env.Port || 4500
 app.listen(Port, () => console.log(`server is running on port ${Port}`))
+module.exports.handler = serverless(app);
