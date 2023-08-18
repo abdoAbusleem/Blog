@@ -43,6 +43,11 @@ app.get(/.*/, function(req, res) {
  app.use ("/posts" , auth , postRoute)
  app.use("/relation" , auth , relationRoute)
  app.use("/comments" , auth , commentRoute)
+ app.get("/anything" , function(req, res){
+    return res.send({
+        "success": "success"
+    })
+ })
 
 
 
