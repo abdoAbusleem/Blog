@@ -7,6 +7,7 @@ const postRoute = require ("./routes/post")
 const relationRoute = require("./routes/relationship")
 const commentRoute = require("./routes/Comment")
 const {auth}    = require("./middlewares/auth") 
+const serveStatic = require('serve-static')
 
 const app = express()
 require("dotenv").config()
@@ -19,8 +20,7 @@ app.use(cors())
 app.use(morgan("tiny")) 
 
 
-
-  
+app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
 
 
@@ -31,6 +31,7 @@ app.use(morgan("tiny"))
  }).catch((e) => {
      console.log("failed", e.message)
  })
+
 
 
  //routes 
