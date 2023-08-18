@@ -22,10 +22,6 @@ app.use(morgan("tiny"))
 
 
 
-app.get(/.*/, function(req, res) {
-    res.sendFile(path.join(__dirname, '/dist/index.html'))
-})
-
 
 // //Dbconnect
  sequelize.authenticate().then(() => {
@@ -36,21 +32,16 @@ app.get(/.*/, function(req, res) {
 
 
 
+  
  //routes 
  app.use("/Users" , userRoute)
  app.use ("/posts" , auth , postRoute)
  app.use("/relation" , auth , relationRoute)
  app.use("/comments" , auth , commentRoute)
- app.get("/anything" , function(req, res){
-    return res.send({
-        "success": "success"
-    })
- })
-
+ 
 
 
 //port
 
 const Port = process.env.Port || 4500
 app.listen(Port, () => console.log(`server is running on port ${Port}`))
-module.exports.handler = serverless(app);
