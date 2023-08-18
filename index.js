@@ -35,10 +35,10 @@ app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
 
  //routes 
- router.use("/Users" , userRoute)
- router.use ("/posts" , auth , postRoute)
- router.use("/relation" , auth , relationRoute)
- router.use("/comments" , auth , commentRoute)
+ app.use("/Users" , userRoute)
+ app.use ("/posts" , auth , postRoute)
+ app.use("/relation" , auth , relationRoute)
+ app.use("/comments" , auth , commentRoute)
 
 
  app.get("/", (req, res) => {
