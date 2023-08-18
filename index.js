@@ -41,11 +41,10 @@ app.use('/', serveStatic(path.join(__dirname, '/dist')))
  app.use("/comments" , auth , commentRoute)
 
 
- app.get("/", (req, res) => {
-    res.json({
-      hello: "hi!"
-    });
-  });
+ app.get(/.*/, function(req, res) {
+    res.sendFile(path.join(__dirname, '/dist/index.html'))
+})
+
 
   app.use(`/.netlify/functions/api`, router);
 //port
