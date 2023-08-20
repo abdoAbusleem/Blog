@@ -36,7 +36,7 @@ app.use(morgan("tiny"))
   
  //routes 
  app.use("/Users" , userRoute)
- app.use ("/posts" , auth , postRoute)
+ app.use ("/posts" ,  postRoute)
  app.use("/relation" , auth , relationRoute)
  app.use("/comments" , auth , commentRoute)
  
